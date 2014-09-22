@@ -1,17 +1,27 @@
 package com.acxiom.crashcourse.projects;
 
+import java.io.IOException;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Project {
+public final class Project {
+	private static final ObjectMapper MAPPER = new ObjectMapper();
+	
 	@JsonProperty("id")
-	private final int id;
+	@NotNull
+	private final Integer id;
 	
 	@JsonProperty("projectName")
+	@NotNull
+	@Size(min=1)
 	private final String projectName;
 	
 	@JsonProperty("projectDescription")
@@ -21,7 +31,7 @@ public class Project {
 
 	@JsonCreator
 	public Project(
-			@JsonProperty("id") int id, 
+			@JsonProperty("id") Integer id, 
 			@JsonProperty("projectName") String projectName, 
 			@JsonProperty("projectDescription") String projectDescription) {
 		this.id = id;
@@ -29,7 +39,6 @@ public class Project {
 		this.projectDescription = projectDescription;
 		
 		this.hashCode = Objects.hash(id, projectName, projectDescription);
-		
 	}
 
 	private Project(Builder builder) {
@@ -40,7 +49,7 @@ public class Project {
 		return new Builder();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -71,12 +80,21 @@ public class Project {
 		}
 	}
 	
+	@Override
+	public String toString() {
+		try {
+			return MAPPER.writeValueAsString(this);
+		} catch (IOException e) {
+			return super.toString();
+		}
+	}
+	
 	public static final class Builder {
-		private int id;
+		private Integer id;
 		private String projectName;
 		private String projectDescription;
 		
-		public Builder setId(int id) {
+		public Builder setId(Integer id) {
 			this.id = id;
 			return this;
 		}

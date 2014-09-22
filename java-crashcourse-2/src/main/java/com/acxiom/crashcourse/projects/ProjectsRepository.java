@@ -21,7 +21,6 @@ public class ProjectsRepository {
 		}else{
 			return new ArrayList<>(projects);
 		}
-		
 	}
 
 	public Project getProject(final int projectId) {
@@ -32,10 +31,31 @@ public class ProjectsRepository {
 		}
 		return null;
 	}
+
+	public Project addProject(Project project) {
+		Project existing = this.getProject(project.getId());
+		if(existing==null){
+			this.projects.add(project);
+			return project;
+		}else{
+			throw new IllegalArgumentException("project with id "+project.getId()+" alredy exists");
+		}
+	}
+
+	public Project updateProject(Project project) {
+		Project existing = this.getProject(project.getId());
+		if(existing!=null){
+			int index = this.projects.indexOf(existing);
+			this.projects.set(index, project);
+			return project;
+		}else{
+			throw new IllegalArgumentException("project with id "+project.getId()+" does not exist");
+		}
+	}
 	
-	public Project saveProject(Project project) {
-		projects.add(project);
-		return project;
+	public void deleteProject(int projectId) {
+		Project project = this.getProject(projectId);
+		this.projects.remove(project);
 	}
 	
 	private List<Project> filterProjects(String keyword) {
@@ -47,5 +67,8 @@ public class ProjectsRepository {
 		}
 		return matching;
 	}
+
+	
+
 
 }
