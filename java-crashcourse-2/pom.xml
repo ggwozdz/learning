@@ -1,0 +1,258 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.acxiom.crashcourse</groupId>
+	<artifactId>java-crashcourse-2</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>Java Crash Course #2</name>
+
+	<properties>
+		<slf4j.version>1.7.5</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+		<jackson.version>1.9.6</jackson.version>
+		<guava.version>18.0</guava.version>
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.9.5</mockito.version>
+		<spring.version>3.1.0.RELEASE</spring.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+	<dependencies>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<!-- servlet API -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>6.0.35</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSON -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>1.9.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.8</version>
+		</dependency>
+
+		<!-- JSR-303 (Bean Validation) Implementation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Tests -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>acxiom-releases</id>
+			<name>Acxiom Releases Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>acxiom-central</id>
+			<name>Acxiom Central Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/central/</url>
+		</repository>
+		<repository>
+			<id>acxiom-jboss-public</id>
+			<name>Acxiom JBoss Public Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/jboss-public/</url>
+		</repository>
+		<repository>
+			<id>acxiom-shared</id>
+			<name>Acxiom Shared</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>acxiom-jboss</id>
+			<name>Acxiom JBoss Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/jboss/</url>
+		</repository>
+		<repository>
+			<id>acxiom-java-net</id>
+			<name>Acxiom Java Net Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/java.net-m2/</url>
+		</repository>
+		<repository>
+			<id>acxiom-3rd-party</id>
+			<name>Acxiom 3rd party repo</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>acxiom-jboss-public</id>
+			<name>Acxiom JBoss Public Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/jboss-public/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>acxiom-central</id>
+			<name>Acxiom Central Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/central/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>acxiom-java-net</id>
+			<name>Acxiom Java Net Repository</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/java.net-m2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>acxiom-3rd-party</id>
+			<name>Acxiom 3rd party repo</name>
+			<url>http://maven.shareddev.acxiom.net/nexus/content/repositories/thirdparty/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<profiles>
+		<profile>
+			<id>gg</id>
+			<properties>
+				<tomcat.deploy.dir>/Users/ggwozd/servers/apache-tomcat-7.0.37/webapps</tomcat.deploy.dir>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<build>
+				<finalName>java-course</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>2.6</version>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<!-- here the phase you need -->
+								<phase>install</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${tomcat.deploy.dir}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>target</directory>
+											<includes>
+												<include>java-course.war</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+	</profiles>
+</project>
